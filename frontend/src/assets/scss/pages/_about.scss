@@ -1,0 +1,13 @@
+.p-about {
+
+    &__bio {
+        @include margin(60px, 0);
+        width: 50%;
+        float: right;
+    }
+
+    img {
+        position: absolute;
+        bottom: 0;
+    }
+}

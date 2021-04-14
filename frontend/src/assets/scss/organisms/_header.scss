@@ -1,0 +1,9 @@
+.o-header {
+    @include clearfix();
+    @include margin(20px, 0);
+
+    nav {
+        @include margin-top(20px);
+        float: right;
+    }
+}

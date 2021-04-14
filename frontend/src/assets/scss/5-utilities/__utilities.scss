@@ -1,0 +1,24 @@
+/*------------------------------------*\
+  UTILITIES
+\*------------------------------------*/
+.sr-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+// Tell ReachUI to ignore warnings about missing stylesheets.
+:root {
+    --reach-dialog: 1;
+    --reach-skip-nav: 1;
+    --reach-tabs: 1;
+    --reach-menu-button: 1;
+}

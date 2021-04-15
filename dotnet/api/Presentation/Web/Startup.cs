@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AndcultureCode.CSharp.Core.Utilities.Configuration;
+using Data.SqlServer.Extensions;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -45,7 +46,7 @@ namespace Web
             _environment = env;
 
             ConfigurationUtils.SetConfiguration(_configuration);
-            ConfigurationUtils.GetConnectionString("RwsApi");
+            //ConfigurationUtils.GetConnectionString("RwsApi");
         }
 
         #endregion Constructor
@@ -93,6 +94,16 @@ namespace Web
 
                 endpoints.MapControllerRoute(name: "default", pattern: "{controller}/{action=Index}/{id?}");
             });
+
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var serviceProvider = serviceScope.ServiceProvider;
+
+                app.ConfigureDatabase(
+                    serviceProvider,
+                    migrate: true
+                );
+            }
         }
     }
 }
